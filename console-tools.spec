@@ -83,7 +83,7 @@ Biblioteki statyczne console-tools.
 mv po/et_EE.po po/et.po
 mv po/et_EE.gmo po/et.gmo
 rm -f missing
-gettextize --copy --force
+%{__gettextize}
 %{__libtoolize}
 aclocal
 %{__autoconf}
