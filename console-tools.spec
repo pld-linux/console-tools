@@ -9,8 +9,8 @@ Group(pl):	Narzêdzia/Konsola
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/keyboards/%{name}-%{version}.tar.gz
 Source1:	console-init.tar.gz
 Prereq:		/sbin/chkconfig
-BuildPrereq:	sgml-tools
-BuildPrereq:	jade
+BuildRequires:	sgml-tools
+BuildRequires:	jade
 Obsoletes:	kbd
 Provides:	kbd
 BuildRoot:	/tmp/%{name}-%{version}-root
