@@ -6,10 +6,11 @@ Version:     1
 Release:     2
 Copyright:   GPL
 Group:	     Utilities/Console
+Group(pl):   Narzêdzia/Konsola
 Vendor:	     Yann Dirson <dirson@debian.org>
 Source:	     ftp://sunsite.unc.edu/pub/Linux/system/keyboards/console-tools-%{date}.tar.gz
-Patch:	     %{name}-ndebug.patch
 Source1:     console-init.tar.gz
+Patch:	     %{name}-ndebug.patch
 Prereq:	     /sbin/chkconfig
 Obsoletes:   kbd
 Provides:    kbd
@@ -95,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/profile.d/console.sh
 %attr(755, root, root) /usr/bin/*
 %attr(755, root, root) /usr/lib/lib*.so.*
-%attr(644, root,  man) /usr/man/man[1548]/*
+%attr(644, root,  man) /usr/man/man[1458]/*
 
 /usr/share/consolefonts
 /usr/share/consoletrans
