@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # console	Load console font and keyboard table
 #
@@ -31,7 +31,7 @@ case "$1" in
 		then
 			show Loading console font
 			busy
-			consolechars -f $CONSOLEFONT &>/dev/null
+			consolechars -f $CONSOLEFONT > /dev/null 2>&1
 			deltext;ok
 			# Don't use "" here because additional options may be
 			# specified after the font name (e.g. fallback tables)
@@ -40,14 +40,14 @@ case "$1" in
 		then
 			show Loading console map
 			busy
-			consolechars -m $CONSOLEMAP &>/dev/null
+			consolechars -m $CONSOLEMAP > /dev/null 2>&1
 			deltext;ok
 		fi
 		if [ "$KEYTABLE" != "" ]
 		then
 			show Loading keyboard table
 			busy
-			loadkeys $KEYTABLE &>/dev/null
+			loadkeys $KEYTABLE > /dev/null 2>&1
 		        deltext;ok
 		fi
 		;;
