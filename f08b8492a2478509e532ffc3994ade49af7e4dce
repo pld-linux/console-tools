@@ -1,0 +1,2 @@
+- removed SONAME symlinks and added runing /sbin/ldconfig in %%post, %%postun,
+- moved some doc to devel.
