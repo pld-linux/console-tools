@@ -86,7 +86,7 @@ mv po/et_EE.gmo po/et.gmo
 rm -f missing
 %{__gettextize}
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
