@@ -4,7 +4,7 @@ Name:		console-tools
 Version:	0.3.3
 Release:	4
 Serial:		1
-Copyright:	GPL
+License:	GPL
 Group:		Utilities/Console
 Group(pl):	Narzêdzia/Konsola
 Source0:	http://altern.org/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
@@ -23,22 +23,22 @@ Provides:	kbd
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-console-tools are utilities for handling console fonts and keyboard
-maps. It is derived from kbd-0.99.tar.gz, with many bug-fixes and
-enhancements. 
+console-tools are utilities for handling console fonts and keyboard maps.
+It is derived from kbd-0.99.tar.gz, with many bug-fixes and enhancements.
 The data files are now part of a new package (console-data).
 
 %description -l pl
-Console-tools to narzêdzia zajmuj±ce siê fontami i mapami klawiatury 
-na konsoli. Pakiet wywodzi siê z kbd-0.99.tar.gz, poprawiaj±c wiele 
-b³êdów i wprowadzaj±c rozszerzenia. 
-Pliki danych s± teraz czê¶ci± nowego pakietu (console-data).
+Console-tools to narzêdzia zajmuj±ce siê fontami i mapami klawiatury na
+konsoli. Pakiet wywodzi siê z kbd-0.99.tar.gz, poprawiaj±c wiele b³êdów i
+wprowadzaj±c rozszerzenia.  Pliki danych s± teraz czê¶ci± nowego pakietu
+(console-data).
 
 %package devel
 Summary:	Header files
 Summary(pl):	Pliki nag³ówkowe
-Group:		Development
-Group(pl):	Programowanie
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
@@ -50,8 +50,9 @@ Pliki nag³ówkowe do console-tools.
 %package static
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
-Group:		Libraries
-Group(pl):	Biblioteki
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -125,5 +126,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.la
 
 %files static
-%defattr(644,root,root)
-%{_libdir}/lib*.a
+%attr(644,root,root) %{_libdir}/lib*.a
