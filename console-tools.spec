@@ -2,7 +2,7 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	10
+Release:	11
 Epoch:		1
 License:	GPL
 Group:		Applications/Console
@@ -17,6 +17,7 @@ Patch3:		%{name}-readacm.patch
 Patch4:		%{name}-psfgettable.patch
 Patch5:		%{name}-resizecons.patch
 Patch6:		%{name}-amfix.patch
+Patch7:		%{name}-et.patch
 URL:		http://altern.org/ydirson/en/lct/
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
@@ -76,8 +77,11 @@ Biblioteki statyczne console-tools.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p0
 
 %build
+mv po/et_EE.po po/et.po
+mv po/et_EE.gmo po/et.gmo
 rm -f missing
 gettextize --copy --force
 libtoolize --copy --force
