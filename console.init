@@ -20,25 +20,21 @@
 . /etc/rc.d/init.d/functions
 
 case "$1" in
-  start|restart|reload)
+  start|restart|reload|force-reload)
 	. /etc/sysconfig/console
 
-	if [ -n "$SVGATEXTMODE" ]
-	then
+	if [ -n "$SVGATEXTMODE" ]; then
 		run_cmd "$(nls 'Setting Text Mode') $SVGATEXTMODE" SVGATextMode $SVGATEXTMODE
 	fi
-	if [ -n "$FBSET" ]
-	then
+	if [ -n "$FBSET" ]; then
 		run_cmd "$(nls 'Setting Text Mode') $FBSET" fbset -a $FBSET
 	fi
-	if [ -n "$CONSOLEFONT" ]
-	then
+	if [ -n "$CONSOLEFONT" ]; then
 		run_cmd "Loading console font and map" consolechars -m ${CONSOLEMAP:-trivial.trans} -f $CONSOLEFONT
 		# Don't use "" here because additional options may be
 		# specified after the font name (e.g. fallback tables)
 	fi
-	if [ -n "$KEYTABLE" ]
-	then
+	if [ -n "$KEYTABLE" ]; then
 		run_cmd "Loading keyboard table" loadkeys $KEYTABLE < /dev/tty0 > /dev/tty0
 	fi
 	;;
@@ -46,8 +42,8 @@ case "$1" in
 	# Nothing to stop and/or report
 	;;
   *)
-	msg_usage "$0 {start|stop|restart|reload|status}"
-	exit 1
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
 esac
 
 exit 0
