@@ -1,13 +1,14 @@
 Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
-Version:	0.2.0
-Release:	2
+Version:	0.2.1
+Release:	1
 Copyright:	GPL
 Group:		Utilities/Console
 Group(pl):	Narzêdzia/Konsola
-Source0:	ftp://sunsite.unc.edu/pub/Linux/system/keyboards/%{name}-%{version}.tar.gz
+Source0:	http://www.multimania.com/ydirson/soft/lct/%{name}-%{version}.tar.gz
 Source1:	console-init.tar.gz
+Patch:		console-tools-man_compat.patch
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
 BuildRequires:	jade
@@ -17,16 +18,14 @@ BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 console-tools are utilities for handling console fonts and keyboard
-maps. 
-It is derived from kbd-0.94.tar.gz, with many bug-fixes and
+maps. It is derived from kbd-0.99.tar.gz, with many bug-fixes and
 enhancements. 
 The data files are now part of a new package (console-data).
 
 %description -l pl
 Console-tools to narzêdzia zajmuj±ce siê fontami i mapami klawiatury 
-na konsoli. 
-Pakiet wywodzi siê z kbd-0.94.tar.gz, poprawiaj±c wiele b³êdów
-i wprowadzaj±c rozszerzenia. 
+na konsoli. Pakiet wywodzi siê z kbd-0.99.tar.gz, poprawiaj±c wiele 
+b³êdów i wprowadzaj±c rozszerzenia. 
 Pliki danych s± teraz czê¶ci± nowego pakietu (console-data).
 
 %package devel
@@ -57,8 +56,10 @@ Biblioteki statyczne console-tools.
 
 %prep
 %setup -q -a1 
+%patch -p0
 
 %build
+LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--enable-kbd-compat
 make 
@@ -66,18 +67,9 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install-strip prefix=$RPM_BUILD_ROOT/usr \
-	bindir=$RPM_BUILD_ROOT/%{_bindir} \
-	mandir=$RPM_BUILD_ROOT/%{_mandir} \
-	libdir=$RPM_BUILD_ROOT/%{_libdir} \
-	includedir=$RPM_BUILD_ROOT/%{_includedir}
+make install DESTDIR=$RPM_BUILD_ROOT
 
 cp -a etc $RPM_BUILD_ROOT
-
-for i in loadunimap mapscrn saveunimap savefont setfont; do
-	rm -f $RPM_BUILD_ROOT%{_mandir}/man8/$i.8
-	echo .so kbd-compat.8 > $RPM_BUILD_ROOT%{_mandir}/man8/$i.8
-done
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
@@ -102,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {README,NEWS,BUGS}.gz doc/README.*
 %doc doc/{dvorak,file-formats,contrib}
+%doc doc/*.txt.gz doc/*.html
 
 %attr(754,root,root) %config /etc/rc.d/init.d/console
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
@@ -114,10 +107,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/*.html doc/*.txt.gz
-
 %{_includedir}/lct
 %attr(755,root,root) %{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/*.la
+%{_libdir}/*.so.0
 
 %files static
 %defattr(644,root,root)
