@@ -2,7 +2,7 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	11
+Release:	12
 Epoch:		1
 License:	GPL
 Group:		Applications/Console
@@ -20,6 +20,7 @@ Patch4:		%{name}-psfgettable.patch
 Patch5:		%{name}-resizecons.patch
 Patch6:		%{name}-amfix.patch
 Patch7:		%{name}-et.patch
+Patch8:		%{name}-gcc.patch
 URL:		http://lct.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -80,6 +81,7 @@ Biblioteki statyczne console-tools.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p0
+%patch8 -p1
 
 %build
 mv po/et_EE.po po/et.po
