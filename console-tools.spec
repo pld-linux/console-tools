@@ -2,7 +2,7 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	3
+Release:	4
 Serial:		1
 Copyright:	GPL
 Group:		Utilities/Console
@@ -119,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/file-formats
+%doc doc/file-formats/{TMPL,cp,cpi,psf,raw,xpsf-draft*}.gz
 %{_includedir}/lct
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.la
