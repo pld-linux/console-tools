@@ -122,36 +122,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root)
 %{_libdir}/lib*.a
-
-%changelog
-* Mon Jun 07 1999 Jan Rêkorajski <baggins@pld.org.pl>
-  [0.2.0-2]
-- spec cleanup
-- added find_lang macro
-
-* Thu Apr 22 1999 Piotr Czerwiñski <pius@pld.org.pl>
-  [0.2.0-1]
-- updated to 0.2.0,
-- removed data files (they are now in separated package),
-- removed console-tools-ndebug.patch,
-- added locales,
-- removed man group from na pages,
-- added gzipping man pages and documentation,
-- added Group(pl),
-- changed Group in devel and static subpackages,
-- added more documentation,
-- minor changes,
-- recompiled on rpm 3.
-
-* Thu Sep 24 1998 Marcin 'Qrczak' Kowalczyk <qrczak@knm.org.pl>
-- Spec generally rewritten
-- Qrczak's fonts removed from the package (they were not a part of
-  console-tools and now are in a separate package called fonty)
-- Added SysV-like init scripts
-- Added pl1.kmap with diacritics under AltGr only (will be included
-  in the next version of console-tools)
-- Added --enable-kbd-compat (wrappers emulating kbd's syntax)
-  and Provides: kbd
-
-* Sat Jul 25 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- initial RPM release
