@@ -30,9 +30,9 @@ BuildRequires:	sgml-tools
 Requires(post,preun):	/sbin/chkconfig
 Requires:	console-data
 Requires:	localedb-src
-Obsoletes:	kbd
 Provides:	kbd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	kbd
 
 %description
 console-tools are utilities for handling console fonts and keyboard
@@ -98,7 +98,8 @@ rm -f missing
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d,profile.d}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/console
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/console
