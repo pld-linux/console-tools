@@ -76,7 +76,7 @@ for i in loadunimap mapscrn saveunimap savefont setfont; do
 	echo .so kbd-compat.8 > $RPM_BUILD_ROOT%{_mandir}/man8/$i.8
 done
 
-strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	README NEWS BUGS doc/README.* doc/*.txt \
@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /etc/profile.d/console.sh
 %attr(755,root,root) /usr/bin/*
-%attr(755,root,root) /usr/lib/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %lang(fr) /usr/share/locale/fr/LC_MESSAGES/console-tools.mo
 %lang(ga) /usr/share/locale/ga/LC_MESSAGES/console-tools.mo
@@ -115,11 +115,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.html doc/*.txt.gz
 
 /usr/include/lct
-%attr(755,root,root) /usr/lib/*.so
+%attr(755,root,root) %{_libdir}/*.so
 
 %files static
 %defattr(644,root,root)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %changelog
 * Thu Apr 22 1999 Piotr Czerwiñski <pius@pld.org.pl>
