@@ -1,7 +1,7 @@
 Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
-Version:	0.2.1
+Version:	0.2.2
 Release:	1
 Copyright:	GPL
 Group:		Utilities/Console
@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,BUGS}.gz doc/README.*
-%doc doc/{dvorak,contrib}.gz
+%doc doc/{dvorak,contrib}
 %doc doc/*.txt.gz
 
 %attr(754,root,root) %config /etc/rc.d/init.d/console
@@ -115,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/file-formats.gz
+%doc doc/file-formats
 %{_includedir}/lct
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.la
