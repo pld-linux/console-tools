@@ -68,7 +68,7 @@ Console-tools static libraries.
 Biblioteki statyczne console-tools.
 
 %prep
-%setup  -q 
+%setup  -q
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
