@@ -2,14 +2,13 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Utilities/Console
 Group(pl):	Narzêdzia/Konsola
 Source0:	http://www.multimania.com/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
-Source3:	console.sh
 Patch:		console-tools-man_compat.patch
 URL:		http://www.multimania.com/ydirson/en/lct/
 Prereq:		/sbin/chkconfig
@@ -76,7 +75,6 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/console
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/console
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
@@ -109,7 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) /etc/rc.d/init.d/console
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
 
-%attr(755,root,root) /etc/profile.d/console.sh
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
