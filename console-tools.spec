@@ -1,12 +1,12 @@
 Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
-Version:	0.2.2
+Version:	0.3.3
 Release:	1
 Copyright:	GPL
 Group:		Utilities/Console
 Group(pl):	Narzêdzia/Konsola
-Source0:	http://www.multimania.com/ydirson/soft/lct/%{name}-%{version}.tar.gz
+Source0:	http://www.multimania.com/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
 Source3:	console.sh
