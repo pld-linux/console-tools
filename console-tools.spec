@@ -8,6 +8,7 @@ License:	GPL
 Group:		Applications/Console
 # ftp://ftp.sourceforge.net/pub/sourceforge/lct/ - but no 0.3.3 yet
 Source0:	%{name}-%{version}.tar.gz
+# Source0-md5:	dcb9a6fae481b20d77174bce06cbd00f
 Source1:	console.init
 Source2:	console.sysconfig
 Source3:	console.sh
