@@ -11,6 +11,7 @@ Source1:	console.init
 Source2:	console.sysconfig
 Source3:	console.sh
 Patch:		console-tools-man_compat.patch
+URL:		http://www.multimania.com/ydirson/en/lct/
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
 BuildRequires:	jade
