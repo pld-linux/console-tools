@@ -23,32 +23,19 @@ case "$1" in
 	start|restart)
 		. /etc/sysconfig/console
 
-		if [ "$SVGATEXTMODE" != "" ]
+		if [ -n "$SVGATEXTMODE" ]
 		then
-			SVGATextMode $SVGATEXTMODE
+			run_cmd "Setting Text Mode $SVGATEXTMODE" SVGATextMode $SVGATEXTMODE
 		fi
-		if [ "$CONSOLEFONT" != "" ]
+		if [ -n "$CONSOLEFONT" ]
 		then
-			show "Loading console font"
-			busy
-			consolechars -f $CONSOLEFONT > /dev/null 2>&1
-			deltext;ok
+			run_cmd "Loading console font and map" consolechars -m ${CONSOLEMAP:-trivial.trans} -f $CONSOLEFONT
 			# Don't use "" here because additional options may be
 			# specified after the font name (e.g. fallback tables)
 		fi
-		if [ "$CONSOLEMAP" != "" ]
+		if [ -n "$KEYTABLE" ]
 		then
-			show "Loading console map"
-			busy
-			consolechars -m $CONSOLEMAP > /dev/null 2>&1
-			deltext;ok
-		fi
-		if [ "$KEYTABLE" != "" ]
-		then
-			show "Loading keyboard table"
-			busy
-			loadkeys $KEYTABLE > /dev/null 2>&1
-		        deltext;ok
+			run_cmd "Loading keyboard table" loadkeys $KEYTABLE < /dev/tty0 > /dev/tty0
 		fi
 		;;
 	stop)
@@ -58,7 +45,7 @@ case "$1" in
 		# Nothing to report
 		;;
 	*)
-		msg_Usage "$0 {start|stop|status|restart}"
+		msg_usage "$0 {start|stop|status|restart}"
 		exit 1
 esac
 
