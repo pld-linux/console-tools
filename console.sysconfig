@@ -1,0 +1,18 @@
+# SVGATextMode's mode (optional)
+SVGATEXTMODE=
+
+# Console font file name (usually from /usr/share/consolefonts dir). Determines
+# the set of available characters, the typeface and the number of character
+# lines on the screen. Other options may be specified after the font name,
+# e.g. -k a_fallback_table
+#CONSOLEFONT="iso2-16 -k qrczak"
+CONSOLEFONT="iso02grf"
+
+# Application-charset map file name (usually from /usr/share/consoletrans dir).
+# Determines the encoding used by the console when in single-byte (non-Unicode)
+# mode
+#CONSOLEMAP=iso02
+CONSOLEMAP=iso01
+
+# Keyboard table file name
+KEYTABLE=pl1
