@@ -14,6 +14,7 @@ Patch:		console-tools-man_compat.patch
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
 BuildRequires:	jade
+Requires:	console-data
 Obsoletes:	kbd
 Provides:	kbd
 BuildRoot:	/tmp/%{name}-%{version}-root
