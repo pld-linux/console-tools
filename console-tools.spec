@@ -6,8 +6,6 @@ Release:	10
 Epoch:		1
 License:	GPL
 Group:		Applications/Console
-Group(de):	Applikationen/Konsole
-Group(pl):	Aplikacje/Konsola
 Source0:	http://altern.org/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
@@ -49,13 +47,6 @@ nowego pakietu (console-data).
 Summary:	Header files
 Summary(pl):	Pliki nagЁСwkowe
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -68,13 +59,6 @@ Pliki nagЁСwkowe do console-tools.
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
