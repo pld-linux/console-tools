@@ -1,0 +1,5 @@
+- updated to 0.2.1,
+- changed Source url,
+- added using DESTDIR,
+- fixed installing man pages,
+- some changes in %%install and %%files.
