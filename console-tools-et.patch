@@ -1,0 +1,11 @@
+--- configure.in~	Sun May 19 23:15:00 2002
++++ configure.in	Sun May 19 23:15:00 2002
+@@ -23,7 +23,7 @@
+ AC_PROG_YACC
+ 
+ # i18n stuff
+-ALL_LINGUAS="cs de ru et_EE ga fr"
++ALL_LINGUAS="cs de ru et ga fr"
+ AM_GNU_GETTEXT
+ AC_OUTPUT_COMMANDS([sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
+ 
