@@ -13,6 +13,10 @@ Source2:	console.sysconfig
 Source3:	console.sh
 Patch0:		console-tools-man_compat.patch
 Patch1:		console-tools-no_bash.patch
+Patch2:		console-tools-acm.patch
+Patch3:		console-tools-readacm.patch
+Patch4:		console-tools-psfgettable.patch
+patch5:		console-tools-resizecons.patch
 URL:		http://altern.org/ydirson/en/lct/
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
@@ -68,6 +72,10 @@ Biblioteki statyczne console-tools.
 %setup  -q 
 %patch0 -p0
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 gettextize --copy --force
