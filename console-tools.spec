@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
 
 %attr(755,root,root) /etc/profile.d/console.sh
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/console-tools.mo
