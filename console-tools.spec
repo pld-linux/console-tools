@@ -65,7 +65,7 @@ Biblioteki statyczne console-tools.
 LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--enable-kbd-compat
-make 
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{dvorak,contrib}
 %doc doc/*.txt.gz
 
-%attr(754,root,root) %config /etc/rc.d/init.d/console
+%attr(754,root,root) /etc/rc.d/init.d/console
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
 
 %attr(755,root,root) /etc/profile.d/console.sh
