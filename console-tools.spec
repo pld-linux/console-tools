@@ -86,11 +86,14 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 
 %post
 /sbin/chkconfig --add console
+/sbin/ldconfig
 
 %preun
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del console
 fi
+
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -98,8 +101,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,BUGS}.gz doc/README.*
-%doc doc/{dvorak,file-formats,contrib}
-%doc doc/*.txt.gz doc/*.html
+%doc doc/{dvorak,contrib}.gz
+%doc doc/*.txt.gz
 
 %attr(754,root,root) %config /etc/rc.d/init.d/console
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
@@ -112,10 +115,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%doc doc/file-formats.gz
 %{_includedir}/lct
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.la
-%{_libdir}/*.so.0
 
 %files static
 %defattr(644,root,root)
