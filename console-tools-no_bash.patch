@@ -1,0 +1,9 @@
+diff -Nru console-tools-0.3.3/contrib/font2psf console-tools-0.3.3.new/contrib/font2psf
+--- console-tools-0.3.3/contrib/font2psf	Thu Apr  8 23:29:41 1999
++++ console-tools-0.3.3.new/contrib/font2psf	Fri Feb 11 04:58:24 2000
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ #written by Martin Lohner, SuSE GmbH, Dec 1998
+ echo "This script converts 256 character font to psf-fonts"
+ echo "It simply assumes that all files in the current directory"
