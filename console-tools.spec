@@ -139,7 +139,7 @@ fi
 %doc doc/file-formats/{TMPL,cp,cpi,psf,raw,xpsf-draft*}
 %{_includedir}/lct
 %attr(755,root,root) %{_libdir}/*.so
-%attr(755,root,root) %{_libdir}/*.la
+%{_libdir}/*.la
 
 %files static
 %defattr(644,root,root,755)
