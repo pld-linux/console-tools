@@ -2,25 +2,30 @@ Summary:	Linux console utilities
 Summary(pl):	NarzЙdzia do obsЁugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	9
-Serial:		1
+Release:	10
+Epoch:		1
 License:	GPL
-Group:		Utilities/Console
-Group(pl):	NarzЙdzia/Konsola
+Group:		Applications/Console
+Group(de):	Applikationen/Konsole
+Group(pl):	Aplikacje/Konsola
 Source0:	http://altern.org/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
 Source3:	console.sh
-Patch0:		console-tools-man_compat.patch
-Patch1:		console-tools-no_bash.patch
-Patch2:		console-tools-acm.patch
-Patch3:		console-tools-readacm.patch
-Patch4:		console-tools-psfgettable.patch
-patch5:		console-tools-resizecons.patch
+Patch0:		%{name}-man_compat.patch
+Patch1:		%{name}-no_bash.patch
+Patch2:		%{name}-acm.patch
+Patch3:		%{name}-readacm.patch
+Patch4:		%{name}-psfgettable.patch
+Patch5:		%{name}-resizecons.patch
+Patch6:		%{name}-amfix.patch
 URL:		http://altern.org/ydirson/en/lct/
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
 BuildRequires:	jade
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRequires:	gettext-devel
 Requires:	console-data
 Requires:	localedb-src
@@ -44,8 +49,13 @@ nowego pakietu (console-data).
 Summary:	Header files
 Summary(pl):	Pliki nagЁСwkowe
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -58,8 +68,13 @@ Pliki nagЁСwkowe do console-tools.
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -76,9 +91,15 @@ Biblioteki statyczne console-tools.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
+rm -f missing
 gettextize --copy --force
+libtoolize --copy --force
+aclocal
+autoconf
+automake -a -c
 %configure \
 	--enable-kbd-compat
 %{__make}
@@ -98,9 +119,12 @@ gzip -9nf README NEWS BUGS doc/README.* doc/*.txt \
 
 %find_lang %{name}
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
-/sbin/chkconfig --add console
 /sbin/ldconfig
+/sbin/chkconfig --add console
 
 %preun
 if [ "$1" = "0" ]; then
@@ -108,9 +132,6 @@ if [ "$1" = "0" ]; then
 fi
 
 %postun -p /sbin/ldconfig
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
