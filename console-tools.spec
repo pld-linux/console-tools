@@ -1,39 +1,39 @@
-Summary:     Linux console utilities
-Summary(pl): Narzêdzia do obs³ugi konsoli
-Name:	     console-tools
-%define      date 1998.08.11 
-Version:     1
-Release:     2
-Copyright:   GPL
-Group:	     Utilities/Console
-Group(pl):   Narzêdzia/Konsola
-Vendor:	     Yann Dirson <dirson@debian.org>
-Source:	     ftp://sunsite.unc.edu/pub/Linux/system/keyboards/console-tools-%{date}.tar.gz
-Source1:     console-init.tar.gz
-Patch:	     %{name}-ndebug.patch
-Prereq:	     /sbin/chkconfig
-Obsoletes:   kbd
-Provides:    kbd
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	Linux console utilities
+Summary(pl):	Narzêdzia do obs³ugi konsoli
+Name:		console-tools
+Version:	0.2.0
+Release:	1
+Copyright:	GPL
+Group:		Utilities/Console
+Group(pl):	Narzêdzia/Konsola
+Source0:	ftp://sunsite.unc.edu/pub/Linux/system/keyboards/%{name}-%{version}.tar.gz
+Source1:	console-init.tar.gz
+Prereq:		/sbin/chkconfig
+#BuildPrereq:	sgml-tools
+#BuildPrereq:	jade
+Obsoletes:	kbd
+Provides:	kbd
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 console-tools are utilities for handling console fonts and keyboard
-maps. The package includes various fonts and keymaps.
-
-It is derived from kbd-0.96a.tar.gz, with many bug-fixes and
-enhancements.
+maps. 
+It is derived from kbd-0.94.tar.gz, with many bug-fixes and
+enhancements. 
+The data files are now part of a new package (console-data).
 
 %description -l pl
 Console-tools to narzêdzia zajmuj±ce siê fontami i mapami klawiatury 
-na konsoli. Do pakietu s± do³±czone ró¿ne fonty i mapy klawiatury.
-
-Pakiet wywodzi siê z kbd-0.96a.tar.gz, poprawiaj±c wiele b³êdów
-i wprowadzaj±c rozszerzenia.
+na konsoli. 
+Pakiet wywodzi siê z kbd-0.94.tar.gz, poprawiaj±c wiele b³êdów
+i wprowadzaj±c rozszerzenia. 
+Pliki danych s± teraz czê¶ci± nowego pakietu (console-data).
 
 %package devel
 Summary:     Header files
 Summary(pl): Pliki nag³ówkowe
-Group:	     Utilities/Console
+Group:	     Development
+Group(pl):   Programowanie
 Requires:    %{name} = %{version}
 
 %description devel
@@ -45,7 +45,8 @@ Pliki nag³ówkowe do console-tools.
 %package static
 Summary:     Static libraries
 Summary(pl): Biblioteki statyczne
-Group:	     Utilities/Console
+Group:	     Libraries
+Group(pl):   Biblioteki
 Requires:    %{name}-devel = %{version}
 
 %description static
@@ -55,33 +56,35 @@ Console-tools static libraries.
 Biblioteki statyczne console-tools.
 
 %prep
-%setup -q -a1 -n %{name}-%{date}
-%patch -p1
-
-grep -v "Alt " data/keymaps/i386/qwerty/pl.kmap > \
-data/keymaps/i386/qwerty/pl1.kmap
+%setup -q -a1 
 
 %build
-CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s ./configure --enable-kbd-compat
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
+	--enable-kbd-compat
 make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install prefix=$RPM_BUILD_ROOT/usr
+make install-strip prefix=$RPM_BUILD_ROOT/usr
 
 cp -a etc $RPM_BUILD_ROOT
 
-for i in loadunimap mapscrn saveunimap savefont; do
+for i in loadunimap mapscrn saveunimap savefont setfont; do
  rm -f $RPM_BUILD_ROOT/usr/man/man8/$i.8
  echo .so kbd-compat.8 > $RPM_BUILD_ROOT/usr/man/man8/$i.8
 done
+
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+	README NEWS BUGS doc/README.* doc/*.txt \
+	doc/{dvorak,file-formats,contrib}/*
 
 %post
 /sbin/chkconfig --add console
 
 %preun
-if [ $1 = 0 ]; then
+if [ "$1" = "0" ]; then
     /sbin/chkconfig --del console
 fi
 
@@ -89,31 +92,47 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644, root, root, 755)
-%doc README NEWS BUGS
+%defattr(644,root,root,755)
+%doc {README,NEWS,BUGS}.gz doc/README.*
+%doc doc/{dvorak,file-formats,contrib}
+
 %attr(700,root,root) %config /etc/rc.d/init.d/console
 %config %verify(not size mtime md5) /etc/sysconfig/console
-%attr(755,root,root) /etc/profile.d/console.sh
-%attr(755, root, root) /usr/bin/*
-%attr(755, root, root) /usr/lib/lib*.so.*
-%attr(644, root,  man) /usr/man/man[1458]/*
 
-/usr/share/consolefonts
-/usr/share/consoletrans
-/usr/share/keymaps
-/usr/share/videomodes
+%attr(755,root,root) /etc/profile.d/console.sh
+%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) /usr/lib/lib*.so.*
+
+%lang(fr) /usr/share/locale/fr/LC_MESSAGES/console-tools.mo
+%lang(ga) /usr/share/locale/ga/LC_MESSAGES/console-tools.mo
+
+/usr/man/man[1458]/*
 
 %files devel
-%defattr(644, root, root, 755)
-%doc doc/*.html
-/usr/include/lct
+%defattr(644,root,root,755)
+%doc doc/*.html doc/*.txt.gz
 
-%attr(755, root, root) /usr/lib/*.so
+/usr/include/lct
+%attr(755,root,root) /usr/lib/*.so
 
 %files static
-%attr(644, root, root) /usr/lib/*.a
+%attr(644,root,root) /usr/lib/*.a
 
 %changelog
+* Thu Apr 22 1999 Piotr Czerwiñski <pius@pld.org.pl>
+  [0.2.0-1]
+- updated to 0.2.0,
+- removed data files (they are now in separated package),
+- removed console-tools-ndebug.patch,
+- added locales,
+- removed man group from na pages,
+- added gzipping man pages and documentation,
+- added Group(pl),
+- changed Group in devel and static subpackages,
+- added more documentation,
+- minor changes,
+- recompiled on rpm 3.
+
 * Thu Sep 24 1998 Marcin 'Qrczak' Kowalczyk <qrczak@knm.org.pl>
 - Spec generally rewritten
 - Qrczak's fonts removed from the package (they were not a part of
