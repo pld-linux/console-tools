@@ -2,7 +2,7 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	6
+Release:	7
 Serial:		1
 License:	GPL
 Group:		Utilities/Console
