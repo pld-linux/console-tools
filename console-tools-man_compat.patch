@@ -1,10 +1,10 @@
---- compat/Makefile.in~	Mon Jul 19 22:07:13 1999
-+++ compat/Makefile.in	Thu Jul 22 18:38:01 1999
-@@ -291,7 +291,7 @@
+--- compat/Makefile.in~	Tue Aug 31 23:47:02 1999
++++ compat/Makefile.in	Wed Sep  1 17:05:01 1999
+@@ -290,7 +290,7 @@
  	:
  do-install-man-compat:
  	for f in $(bin_SCRIPTS); do \
--	  ln -sf kbd-compat.8 $(mandir)/man8/$$f.8 ; \
+-	  ln -sf kbd-compat.8 $(DESTDIR)$(mandir)/man8/$$f.8 ; \
 +	  echo .so kbd-compat.8 > $(DESTDIR)$(mandir)/man8/$$f.8 ; \
  	done
  
