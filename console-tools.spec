@@ -9,6 +9,7 @@ Group(pl):	Narzêdzia/Konsola
 Source0:	http://www.multimania.com/ydirson/soft/lct/%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
+Source3:	console.sh
 Patch:		console-tools-man_compat.patch
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
@@ -67,12 +68,13 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d}
+install -d $RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d,profile.d}
 
 make install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/console
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/console
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
@@ -102,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) %config /etc/rc.d/init.d/console
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
 
-#%attr(755,root,root) /etc/profile.d/console.sh
+%attr(755,root,root) /etc/profile.d/console.sh
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
