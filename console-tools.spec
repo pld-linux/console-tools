@@ -2,7 +2,7 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	4
+Release:	5
 Serial:		1
 License:	GPL
 Group:		Utilities/Console
@@ -11,11 +11,13 @@ Source0:	http://altern.org/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
 Source3:	console.sh
-Patch:		console-tools-man_compat.patch
+Patch0:		console-tools-man_compat.patch
+Patch1:		console-tools-no_bash.patch
 URL:		http://altern.org/ydirson/en/lct/
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
 BuildRequires:	jade
+BuildRequires:	gettext-devel
 Requires:	console-data
 Requires:	localedb-src
 Obsoletes:	kbd
@@ -62,10 +64,12 @@ Console-tools static libraries.
 Biblioteki statyczne console-tools.
 
 %prep
-%setup -q 
-%patch -p0
+%setup  -q 
+%patch0 -p0
+%patch1 -p1
 
 %build
+gettextize --copy --force
 LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--enable-kbd-compat
