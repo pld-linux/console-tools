@@ -2,15 +2,15 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.2.0
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Utilities/Console
 Group(pl):	Narzêdzia/Konsola
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/keyboards/%{name}-%{version}.tar.gz
 Source1:	console-init.tar.gz
 Prereq:		/sbin/chkconfig
-#BuildPrereq:	sgml-tools
-#BuildPrereq:	jade
+BuildPrereq:	sgml-tools
+BuildPrereq:	jade
 Obsoletes:	kbd
 Provides:	kbd
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -59,15 +59,18 @@ Biblioteki statyczne console-tools.
 %setup -q -a1 
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
+%configure \
 	--enable-kbd-compat
 make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install-strip prefix=$RPM_BUILD_ROOT/usr
+make install-strip prefix=$RPM_BUILD_ROOT/usr \
+	bindir=$RPM_BUILD_ROOT/%{_bindir} \
+	mandir=$RPM_BUILD_ROOT/%{_mandir} \
+	libdir=$RPM_BUILD_ROOT/%{_libdir} \
+	includedir=$RPM_BUILD_ROOT/%{_includedir}
 
 cp -a etc $RPM_BUILD_ROOT
 
@@ -82,6 +85,8 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	README NEWS BUGS doc/README.* doc/*.txt \
 	doc/{dvorak,file-formats,contrib}/*
 
+%find_lang %{name}
+
 %post
 /sbin/chkconfig --add console
 
@@ -93,7 +98,7 @@ fi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f console-tools.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,BUGS}.gz doc/README.*
 %doc doc/{dvorak,file-formats,contrib}
@@ -104,9 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/profile.d/console.sh
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-
-%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/console-tools.mo
-%lang(ga) %{_datadir}/locale/ga/LC_MESSAGES/console-tools.mo
 
 %{_mandir}/man[1458]/*
 
@@ -122,6 +124,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.a
 
 %changelog
+* Mon Jun 07 1999 Jan Rêkorajski <baggins@pld.org.pl>
+  [0.2.0-2]
+- spec cleanup
+- added find_lang macro
+
 * Thu Apr 22 1999 Piotr Czerwiñski <pius@pld.org.pl>
   [0.2.0-1]
 - updated to 0.2.0,
