@@ -50,7 +50,7 @@ nowego pakietu (console-data).
 Summary:	Header files
 Summary(pl):	Pliki nag³ówkowe
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
 Console-tools header files for console-tools
@@ -62,7 +62,7 @@ Pliki nag³ówkowe do console-tools.
 Summary:	Static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 Console-tools static libraries.
