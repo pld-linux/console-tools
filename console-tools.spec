@@ -22,7 +22,7 @@ Requires:	console-data
 Requires:	localedb-src
 Obsoletes:	kbd
 Provides:	kbd
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 console-tools are utilities for handling console fonts and keyboard maps.
