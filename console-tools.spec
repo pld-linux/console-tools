@@ -99,11 +99,13 @@ gzip -9nf README NEWS BUGS doc/README.* doc/*.txt \
 %find_lang %{name}
 
 %post
-NAME=console; %chkconfig_add
+/sbin/chkconfig --add console
 /sbin/ldconfig
 
 %preun
-NAME=console; %chkconfig_del
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del console
+fi
 
 %postun -p /sbin/ldconfig
 
