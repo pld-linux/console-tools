@@ -84,7 +84,7 @@ mv po/et_EE.po po/et.po
 mv po/et_EE.gmo po/et.gmo
 rm -f missing
 gettextize --copy --force
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 %{__automake}
