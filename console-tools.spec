@@ -98,7 +98,7 @@ fi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f console-tools.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc {README,NEWS,BUGS}.gz doc/README.*
 %doc doc/{dvorak,file-formats,contrib}
