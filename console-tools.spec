@@ -105,8 +105,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/bin/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
-%lang(fr) /usr/share/locale/fr/LC_MESSAGES/console-tools.mo
-%lang(ga) /usr/share/locale/ga/LC_MESSAGES/console-tools.mo
+%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/console-tools.mo
+%lang(ga) %{_datadir}/locale/ga/LC_MESSAGES/console-tools.mo
 
 %{_mandir}/man[1458]/*
 
