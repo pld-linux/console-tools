@@ -71,7 +71,6 @@ Biblioteki statyczne console-tools.
 
 %build
 gettextize --copy --force
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--enable-kbd-compat
 %{__make}
@@ -86,10 +85,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/console
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/console
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
-	README NEWS BUGS doc/README.* doc/*.txt \
+gzip -9nf README NEWS BUGS doc/README.* doc/*.txt \
 	doc/{dvorak,file-formats,contrib}/*
 
 %find_lang %{name}
