@@ -6,7 +6,8 @@ Release:	11
 Epoch:		1
 License:	GPL
 Group:		Applications/Console
-Source0:	http://altern.org/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
+# ftp://ftp.sourceforge.net/pub/sourceforge/lct/ - but no 0.3.3 yet
+Source0:	%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
 Source3:	console.sh
@@ -18,14 +19,14 @@ Patch4:		%{name}-psfgettable.patch
 Patch5:		%{name}-resizecons.patch
 Patch6:		%{name}-amfix.patch
 Patch7:		%{name}-et.patch
-URL:		http://altern.org/ydirson/en/lct/
-Prereq:		/sbin/chkconfig
-BuildRequires:	sgml-tools
-BuildRequires:	jade
+URL:		http://lct.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
 BuildRequires:	gettext-devel
+BuildRequires:	jade
+BuildRequires:	libtool
+BuildRequires:	sgml-tools
+Requires(post,preun):	/sbin/chkconfig
 Requires:	console-data
 Requires:	localedb-src
 Obsoletes:	kbd
@@ -102,9 +103,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/console
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/console
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 
-gzip -9nf README NEWS BUGS doc/README.* doc/*.txt \
-	doc/{dvorak,file-formats,contrib}/*
-
 %find_lang %{name}
 
 %clean
@@ -123,9 +121,9 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc {README,NEWS,BUGS}.gz doc/README.*
+%doc README NEWS BUGS doc/README.*
 %doc doc/{dvorak,contrib}
-%doc doc/*.txt.gz
+%doc doc/*.txt
 
 %attr(754,root,root) /etc/rc.d/init.d/console
 %attr(755,root,root) /etc/profile.d/console.sh
@@ -138,7 +136,7 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/file-formats/{TMPL,cp,cpi,psf,raw,xpsf-draft*}.gz
+%doc doc/file-formats/{TMPL,cp,cpi,psf,raw,xpsf-draft*}
 %{_includedir}/lct
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.la
