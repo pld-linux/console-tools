@@ -72,13 +72,13 @@ make install-strip prefix=$RPM_BUILD_ROOT/usr
 cp -a etc $RPM_BUILD_ROOT
 
 for i in loadunimap mapscrn saveunimap savefont setfont; do
-	rm -f $RPM_BUILD_ROOT/usr/man/man8/$i.8
-	echo .so kbd-compat.8 > $RPM_BUILD_ROOT/usr/man/man8/$i.8
+	rm -f $RPM_BUILD_ROOT%{_mandir}/man8/$i.8
+	echo .so kbd-compat.8 > $RPM_BUILD_ROOT%{_mandir}/man8/$i.8
 done
 
 strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	README NEWS BUGS doc/README.* doc/*.txt \
 	doc/{dvorak,file-formats,contrib}/*
 
@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) /usr/share/locale/fr/LC_MESSAGES/console-tools.mo
 %lang(ga) /usr/share/locale/ga/LC_MESSAGES/console-tools.mo
 
-/usr/man/man[1458]/*
+%{_mandir}/man[1458]/*
 
 %files devel
 %defattr(644,root,root,755)
