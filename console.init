@@ -27,6 +27,10 @@ case "$1" in
 		then
 			run_cmd "Setting Text Mode $SVGATEXTMODE" SVGATextMode $SVGATEXTMODE
 		fi
+		if [ -n "$FBSET" ]
+		then
+			run_cmd "Setting Text Mode $FBSET" fbset -a $FBSET
+		fi
 		if [ -n "$CONSOLEFONT" ]
 		then
 			run_cmd "Loading console font and map" consolechars -m ${CONSOLEMAP:-trivial.trans} -f $CONSOLEFONT

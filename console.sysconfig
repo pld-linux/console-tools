@@ -1,6 +1,9 @@
 # SVGATextMode's mode (optional)
 SVGATEXTMODE=
 
+# Framebuffer options (optional)
+FBSET=
+
 # Console font file name (usually from /usr/share/consolefonts dir). Determines
 # the set of available characters, the typeface and the number of character
 # lines on the screen. Other options may be specified after the font name,
