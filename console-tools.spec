@@ -74,7 +74,7 @@ gettextize --copy --force
 LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--enable-kbd-compat
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
