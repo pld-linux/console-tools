@@ -2,20 +2,22 @@ Summary:	Linux console utilities
 Summary(pl):	Narzêdzia do obs³ugi konsoli
 Name:		console-tools
 Version:	0.3.3
-Release:	2
+Release:	3
 Serial:		1
 Copyright:	GPL
 Group:		Utilities/Console
 Group(pl):	Narzêdzia/Konsola
-Source0:	http://www.multimania.com/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
+Source0:	http://altern.org/ydirson/soft/lct/dev/%{name}-%{version}.tar.gz
 Source1:	console.init
 Source2:	console.sysconfig
+Source3:	console.sh
 Patch:		console-tools-man_compat.patch
-URL:		http://www.multimania.com/ydirson/en/lct/
+URL:		http://altern.org/ydirson/en/lct/
 Prereq:		/sbin/chkconfig
 BuildRequires:	sgml-tools
 BuildRequires:	jade
 Requires:	console-data
+Requires:	localedb-src
 Obsoletes:	kbd
 Provides:	kbd
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -76,6 +78,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/console
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/console
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/profile.d
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
@@ -106,6 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.txt.gz
 
 %attr(754,root,root) /etc/rc.d/init.d/console
+%attr(755,root,root) /etc/profile.d/console.sh
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
 
 %attr(755,root,root) %{_bindir}/*
