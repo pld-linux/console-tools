@@ -30,11 +30,11 @@ i wprowadzaj±c rozszerzenia.
 Pliki danych s± teraz czê¶ci± nowego pakietu (console-data).
 
 %package devel
-Summary:     Header files
-Summary(pl): Pliki nag³ówkowe
-Group:	     Development
-Group(pl):   Programowanie
-Requires:    %{name} = %{version}
+Summary:	Header files
+Summary(pl):	Pliki nag³ówkowe
+Group:		Development
+Group(pl):	Programowanie
+Requires:	%{name} = %{version}
 
 %description devel
 Console-tools header files for console-tools
@@ -43,11 +43,11 @@ Console-tools header files for console-tools
 Pliki nag³ówkowe do console-tools.
 
 %package static
-Summary:     Static libraries
-Summary(pl): Biblioteki statyczne
-Group:	     Libraries
-Group(pl):   Biblioteki
-Requires:    %{name}-devel = %{version}
+Summary:	Static libraries
+Summary(pl):	Biblioteki statyczne
+Group:		Libraries
+Group(pl):	Biblioteki
+Requires:	%{name}-devel = %{version}
 
 %description static
 Console-tools static libraries.
@@ -72,9 +72,11 @@ make install-strip prefix=$RPM_BUILD_ROOT/usr
 cp -a etc $RPM_BUILD_ROOT
 
 for i in loadunimap mapscrn saveunimap savefont setfont; do
- rm -f $RPM_BUILD_ROOT/usr/man/man8/$i.8
- echo .so kbd-compat.8 > $RPM_BUILD_ROOT/usr/man/man8/$i.8
+	rm -f $RPM_BUILD_ROOT/usr/man/man8/$i.8
+	echo .so kbd-compat.8 > $RPM_BUILD_ROOT/usr/man/man8/$i.8
 done
+
+strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
 	README NEWS BUGS doc/README.* doc/*.txt \
@@ -85,7 +87,7 @@ gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
 
 %preun
 if [ "$1" = "0" ]; then
-    /sbin/chkconfig --del console
+	/sbin/chkconfig --del console
 fi
 
 %clean
@@ -96,12 +98,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc {README,NEWS,BUGS}.gz doc/README.*
 %doc doc/{dvorak,file-formats,contrib}
 
-%attr(700,root,root) %config /etc/rc.d/init.d/console
-%config %verify(not size mtime md5) /etc/sysconfig/console
+%attr(754,root,root) %config /etc/rc.d/init.d/console
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
 
 %attr(755,root,root) /etc/profile.d/console.sh
 %attr(755,root,root) /usr/bin/*
-%attr(755,root,root) /usr/lib/lib*.so.*
+%attr(755,root,root) /usr/lib/lib*.so.*.*
 
 %lang(fr) /usr/share/locale/fr/LC_MESSAGES/console-tools.mo
 %lang(ga) /usr/share/locale/ga/LC_MESSAGES/console-tools.mo
@@ -116,7 +118,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/lib/*.so
 
 %files static
-%attr(644,root,root) /usr/lib/*.a
+%defattr(644,root,root)
+/usr/lib/lib*.a
 
 %changelog
 * Thu Apr 22 1999 Piotr Czerwiñski <pius@pld.org.pl>
