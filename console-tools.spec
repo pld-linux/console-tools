@@ -25,15 +25,16 @@ Provides:	kbd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-console-tools are utilities for handling console fonts and keyboard maps.
-It is derived from kbd-0.99.tar.gz, with many bug-fixes and enhancements.
-The data files are now part of a new package (console-data).
+console-tools are utilities for handling console fonts and keyboard
+maps. It is derived from kbd-0.99.tar.gz, with many bug-fixes and
+enhancements. The data files are now part of a new package
+(console-data).
 
 %description -l pl
-Console-tools to narzêdzia zajmuj±ce siê fontami i mapami klawiatury na
-konsoli. Pakiet wywodzi siê z kbd-0.99.tar.gz, poprawiaj±c wiele b³êdów i
-wprowadzaj±c rozszerzenia.  Pliki danych s± teraz czê¶ci± nowego pakietu
-(console-data).
+Console-tools to narzêdzia zajmuj±ce siê fontami i mapami klawiatury
+na konsoli. Pakiet wywodzi siê z kbd-0.99.tar.gz, poprawiaj±c wiele
+b³êdów i wprowadzaj±c rozszerzenia. Pliki danych s± teraz czê¶ci±
+nowego pakietu (console-data).
 
 %package devel
 Summary:	Header files
@@ -130,4 +131,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.la
 
 %files static
-%attr(644,root,root) %{_libdir}/lib*.a
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
