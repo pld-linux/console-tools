@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/*.html doc/*.txt.gz
 
-/usr/include/lct
+%{_includedir}/lct
 %attr(755,root,root) %{_libdir}/*.so
 
 %files static
