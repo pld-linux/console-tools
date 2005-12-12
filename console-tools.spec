@@ -131,7 +131,7 @@ fi
 
 %attr(754,root,root) /etc/rc.d/init.d/console
 %attr(755,root,root) /etc/profile.d/console.sh
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/console
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/console
 
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
