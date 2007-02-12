@@ -1,5 +1,5 @@
 Summary:	Linux console utilities
-Summary(pl.UTF-8):   Narzędzia do obsługi konsoli
+Summary(pl.UTF-8):	Narzędzia do obsługi konsoli
 Name:		console-tools
 Version:	0.3.3
 Release:	12
@@ -49,7 +49,7 @@ nowego pakietu (console-data).
 
 %package devel
 Summary:	Header files
-Summary(pl.UTF-8):   Pliki nagłówkowe
+Summary(pl.UTF-8):	Pliki nagłówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
@@ -61,7 +61,7 @@ Pliki nagłówkowe do console-tools.
 
 %package static
 Summary:	Static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne
+Summary(pl.UTF-8):	Biblioteki statyczne
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}
 
