@@ -1,5 +1,5 @@
 Summary:	Linux console utilities
-Summary(pl):	Narzêdzia do obs³ugi konsoli
+Summary(pl.UTF-8):   NarzÄ™dzia do obsÅ‚ugi konsoli
 Name:		console-tools
 Version:	0.3.3
 Release:	12
@@ -41,34 +41,34 @@ maps. It is derived from kbd-0.99.tar.gz, with many bug-fixes and
 enhancements. The data files are now part of a new package
 (console-data).
 
-%description -l pl
-Console-tools to narzêdzia zajmuj±ce siê fontami i mapami klawiatury
-na konsoli. Pakiet wywodzi siê z kbd-0.99.tar.gz, poprawiaj±c wiele
-b³êdów i wprowadzaj±c rozszerzenia. Pliki danych s± teraz czê¶ci±
+%description -l pl.UTF-8
+Console-tools to narzÄ™dzia zajmujÄ…ce siÄ™ fontami i mapami klawiatury
+na konsoli. Pakiet wywodzi siÄ™ z kbd-0.99.tar.gz, poprawiajÄ…c wiele
+bÅ‚Ä™dÃ³w i wprowadzajÄ…c rozszerzenia. Pliki danych sÄ… teraz czÄ™Å›ciÄ…
 nowego pakietu (console-data).
 
 %package devel
 Summary:	Header files
-Summary(pl):	Pliki nag³ówkowe
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
 Console-tools header files for console-tools
 
-%description devel -l pl
-Pliki nag³ówkowe do console-tools.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe do console-tools.
 
 %package static
 Summary:	Static libraries
-Summary(pl):	Biblioteki statyczne
+Summary(pl.UTF-8):   Biblioteki statyczne
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 Console-tools static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne console-tools.
 
 %prep
