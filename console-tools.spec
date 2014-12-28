@@ -24,7 +24,7 @@ Patch8:		%{name}-gcc.patch
 URL:		http://lct.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	jade
 BuildRequires:	libtool
 BuildRequires:	sgml-tools
